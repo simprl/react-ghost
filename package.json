@@ -1,0 +1,31 @@
+{
+  "name": "react-ghost",
+  "version": "0.1.0",
+  "description": "react-ghost - it is logic/biseness layer, actors and workers",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simprl/react-ghost.git"
+  },
+  "peerDependencies": {
+    "react": ">=16.0.0"
+  },
+  "devDependencies": {
+    "react": ">=16.6.1"
+  },
+  "keywords": [
+    "react",
+    "ghost",
+    "logic",
+    "business",
+    "layer",
+    "actors",
+    "workers"
+  ],
+  "author": "simprl",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/simprl/react-ghost/issues"
+  },
+  "homepage": "https://github.com/simprl/react-ghost#readme"
+}
