@@ -1,5 +1,5 @@
-import React from 'react'
+const { createElement, Fragment } = require('react');
 
-export const ghost = React.createElement
+module.exports.ghost = createElement;
 
-export const ghosts = React.createElement.bind(null, React.Fragment, null)
+module.exports.ghosts = createElement.bind(null, Fragment, null);
