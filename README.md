@@ -49,5 +49,89 @@ const HomePageGhost = () => {
 }
 ```
 
+### Now you can write tests for application business logic separately from UI logic 
+Use jest and helper functions from [react-ghost-test](https://www.npmjs.com/package/react-ghost-test) for write tests
+For example:
+```js
+describe('init', () => {
+  test('create app actor', async () => {
+    // Create redux context provider and insert into this provider Application actor.
+    // After that verify store contains 'main' reducer.
+    await waitForState(
+      () => create(ghost(
+        Provider,
+        { store },
+        ghost(AppActor),
+      )),
+      [
+        (state) => expect(state).toHaveProperty('main'),
+      ],
+    );
+  });
+  
+  // Dispatch action 'boot'. AppActor should subscribe to this action and do some
+  // work for boot/reboot application.
+  // At first we wait while booting flag set to true.
+  // After booting ('booing' flag equals to false) we verify state in the store 
+  // And theard - verify that we redirect to home page 
+  test('boot', async () => {
+    await checkDispatch(
+      mainActions.boot('main'),
+      [
+        (state) => state.toHaveProperty('main.booting', true),
+        (state) => state.toMatchObject({
+          main: {
+            booted: true,
+            booting: false,
+          },
+          history: {
+            location: { pathname: '/' },
+          },
+        }),
+        (state) => state.toMatchObject({
+          homePage: {
+            title: 'Home Page',
+          },
+        }),
+      ],
+    );
+  });
+
+
+  // Redirect to books page
+  // History Actor should check histor.toUrl variable.
+  // If it changed then History actor should navigate to this page. So we asssert history.loacation variable
+  // Pages Actor should subscribe to history.loacation and attach specific actor for this location - BoocksActor
+  // We verify this by check 'booksPage' reducer in the store 
+  // Also we save current state in temporary variable for restore in another test 
+  test('open books page', async () => {
+    await checkDispatch(
+      historyActions.push('history', '/books'),
+      [
+        (state) => state.toMatchObject({ history: { toUrl: '/books', action: 'push' } }),
+        (state) => state.toMatchObject({
+          history: {
+            location: { pathname: '/books' },
+          },
+        }),
+        (state) => {
+          state.not.toHaveProperty('homePage');
+          state.toMatchObject({
+            booksPage: {
+              list: [],
+            },
+          });
+          savedStates.booksPage = store.getState(); // save state for restore in another test
+        },
+      ],
+    );
+  });
+});
+
+```
+
+So we tested logic of application.
+After business logic implemented you can add thin layer of UI using react components.
+ 
 ## Requirements
 Support all react versions from 16 and later
