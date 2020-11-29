@@ -1,4 +1,4 @@
-# react-ghost
+# Ghost in React
 Business layer of react application.
 React-Ghosts it is like actors or workers in react.
 
@@ -11,6 +11,15 @@ If you want implement MVC application using react then you have:
 - React-Ghost for Controller
 
 ## Usage
+### Install
+NPM:
+```shell script
+npm i react-ghost
+```
+Yarn:
+```shell script
+yarn add react-ghost
+```
 
 ### Attach to application:
 ```jsx
@@ -45,17 +54,25 @@ const HomePageGhost = () => {
       }, 1000)
       return () => clearInterval(interval)
     })
-    return null // you should explicitly point that this ghost hasn't child ghosts
+
+    // you should explicitly point that this ghost hasn't child ghosts
+    return null 
 }
 ```
+## API
+`ghost(Actor, props, children)` - create and return ghost/actor/worker
 
+`ghost(Actor1, Actor2, .... ActorN)` - crate and return many ghosts/actors/workers
+
+## Testing
 ### Now you can write tests for application business logic separately from UI logic 
 Use jest and helper functions from [react-ghost-test](https://www.npmjs.com/package/react-ghost-test) for write tests
 For example:
 ```js
 describe('init', () => {
   test('create app actor', async () => {
-    // Create redux context provider and insert into this provider Application actor.
+    // Create redux context provider
+    //   and insert into this provider Application actor.
     // After that verify store contains 'main' reducer.
     await waitForState(
       () => create(ghost(
@@ -69,10 +86,12 @@ describe('init', () => {
     );
   });
   
-  // Dispatch action 'boot'. AppActor should subscribe to this action and do some
-  // work for boot/reboot application.
+  // Dispatch action 'boot'.
+  // AppActor should subscribe to this action and do some
+  //    work for boot/reboot application.
   // At first we wait while booting flag set to true.
-  // After booting ('booing' flag equals to false) we verify state in the store 
+  // After booting ('booing' flag equals to false) we verify
+  //    state in the store 
   // And theard - verify that we redirect to home page 
   test('boot', async () => {
     await checkDispatch(
@@ -100,15 +119,21 @@ describe('init', () => {
 
   // Redirect to books page
   // History Actor should check histor.toUrl variable.
-  // If it changed then History actor should navigate to this page. So we asssert history.loacation variable
-  // Pages Actor should subscribe to history.loacation and attach specific actor for this location - BoocksActor
+  // If it changed then History actor should navigate to this page.
+  // So we asssert history.loacation variable
+  // Pages Actor should subscribe to history.loacation and
+  //   attach specific actor for this location - BoocksActor
   // We verify this by check 'booksPage' reducer in the store 
-  // Also we save current state in temporary variable for restore in another test 
+  // Also we save current state in temporary variable for restore
+  //   in another test 
   test('open books page', async () => {
     await checkDispatch(
       historyActions.push('history', '/books'),
       [
-        (state) => state.toMatchObject({ history: { toUrl: '/books', action: 'push' } }),
+        (state) => state.toMatchObject({ history: {
+             toUrl: '/books',
+             action: 'push'
+        } }),
         (state) => state.toMatchObject({
           history: {
             location: { pathname: '/books' },
@@ -121,7 +146,9 @@ describe('init', () => {
               list: [],
             },
           });
-          savedStates.booksPage = store.getState(); // save state for restore in another test
+
+          // save state for restore in another test
+          savedStates.booksPage = store.getState();
         },
       ],
     );
