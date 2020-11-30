@@ -10,8 +10,10 @@ If you want implement MVC application using react then you have:
   
 - React-Ghost for Controller
 
-## Usage
-### Install
+## Install
+1. Install [React JS](https://reactjs.org/docs/create-a-new-react-app.html#create-react-app) 
+2. Add module react-ghost into project:
+
 NPM:
 ```shell script
 npm i react-ghost
@@ -21,6 +23,7 @@ Yarn:
 yarn add react-ghost
 ```
 
+## Usage
 ### Attach to application:
 ```jsx
 <App>
