@@ -1,14 +1,15 @@
-# Ghost in React
+# Ghost in the React
 Business layer of react application.
 React-Ghosts it is like actors or workers in react.
 
-If you want implement MVC application using react then you have:
+If you like the MVC pattern, you might want to add a controller or business logic to FLUX pattern.
+We suggest using:
   
 - Redux for Model
   
 - React for View
   
-- React-Ghost for Controller
+- React-Ghost for Business logic
 
 ## Install
 1. Install [React JS](https://reactjs.org/docs/create-a-new-react-app.html#create-react-app) 
@@ -26,6 +27,9 @@ yarn add react-ghost
 ## Usage
 ### Attach to application:
 ```jsx
+import React from 'react';
+import { ghost } from 'react-ghost';
+
 <App>
  {ghost(AppGhost, { param1, param2 })}
  <Component1 />
@@ -35,6 +39,8 @@ yarn add react-ghost
 
 ### Implement application ghost:
 ```js
+import { ghosts, ghost } from 'react-ghost';
+
 const AppGhost = ({ param1, param2 }) => ghosts(
    ghost(MenuGhost, { param1 }),
    ghost(PagesGhost, { param2 }),
@@ -43,6 +49,10 @@ const AppGhost = ({ param1, param2 }) => ghosts(
 
 ### You can use react and redux hooks:
 ```js
+import {useSelector, useMemo } from 'react';
+import { useDispatch } from 'react-redux'
+import { ghosts, ghost } from 'react-ghost';
+
 const PagesGhost = () => {
     const url = useSelector(({ history }) => history.url)
     const pageGhost = useMemo(() => getPageGhostByUrl(url), [url])
@@ -72,6 +82,9 @@ const HomePageGhost = () => {
 Use jest and helper functions from [react-ghost-test](https://www.npmjs.com/package/react-ghost-test) for write tests
 For example:
 ```js
+import { waitForState, checkDispatch } from 'react-ghost-test'
+import { ghost } from 'react-ghost';
+
 describe('init', () => {
   test('create app actor', async () => {
     // Create redux context provider
