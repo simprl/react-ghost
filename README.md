@@ -1,51 +1,56 @@
-# Ghost in the React
-Business layer of react application.
-React-Ghosts it is like actors or workers in react.
+# React - Ghost
 
-If you like the MVC pattern, you might want to add a controller or business logic to FLUX pattern.
-We suggest using:
-  
+I hope you like anime :)
+
+This library like "Ghost in the Shell" but "Ghost in the React Application" - business layer of react application, 
+something like actors or workers in react.
+
+Usually we use jsx for UI Components:
+```jsx
+const Component = () => <div>
+    <MenuTop /> /* connect to MenuGhost */
+    <Pagination> /*  connect to ListGhost */
+    <List> /*  connect to ListGhost */
+    <ItemHeader> /*  connect to ItemGhost */
+    <ItemContent> /*  connect to ItemGhost */
+    <Pagination> /*  connect to ListGhost */
+    <MenuBottom /> /*  connect to MenuGhost */
+</div>
+```
+
+But for separate logic layer from UI layer we need some other namings.
+
+So I came up with two functions: **ghost()** and **ghosts()**
+
+```js
+import { ghosts, ghost } from 'react-ghost';
+
+const PageGhost = ({ param1, param2, id }) => ghosts(
+    ghost(MenuGhost, { param1 }),
+    ghost(ListGhost, { param2 }),
+    id && ghost(ItemGhost, { id }),
+)
+```
+
+They equals to react createElement:
+```js
+import { createElement, Fragment } from 'react';
+
+const ghost = createElement;
+const ghosts = (...children) => createElement(Fragment, null, ...children);
+
+export { ghost, ghosts };
+```
+That is all content of this library. So you can use all features of React library for code Business logic.
+
+I propose using:
 - Redux for Model
-  
 - React for View
-  
 - React-Ghost for Business logic
 
 ## Install
 1. Install [React JS](https://reactjs.org/docs/create-a-new-react-app.html#create-react-app) 
 2. Add module react-ghost into project:
-
-NPM:
-```shell script
-npm i react-ghost
-```
-Yarn:
-```shell script
-yarn add react-ghost
-```
-
-## Usage
-### Attach to application:
-```jsx
-import React from 'react';
-import { ghost } from 'react-ghost';
-
-<App>
- {ghost(AppGhost, { param1, param2 })}
- <Component1 />
- <Component2 />
-</App>
-```
-
-### Implement application ghost:
-```js
-import { ghosts, ghost } from 'react-ghost';
-
-const AppGhost = ({ param1, param2 }) => ghosts(
-   ghost(MenuGhost, { param1 }),
-   ghost(PagesGhost, { param2 }),
-)
-```
 
 ### You can use react and redux hooks:
 ```js

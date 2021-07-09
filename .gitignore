@@ -1,5 +1,9 @@
 # dependencies
 /node_modules
+out-tsc
+dts
+lib
+es
 .idea/
 
 npm-debug.log*
