@@ -1,9 +1,8 @@
-# React - Ghost
+# react-ghost
 
 I hope you like anime :)
 
-This library like "Ghost in the Shell" but "Ghost in the React Application" - business layer of react application, 
-something like actors or workers in react.
+This library like "Ghost in the Shell" but "Ghost in the React Application" - business layer of the React application.
 
 Usually we use jsx for UI Components:
 ```jsx
@@ -41,6 +40,7 @@ const ghosts = (...children) => createElement(Fragment, null, ...children);
 
 export { ghost, ghosts };
 ```
+
 That is all content of this library. So you can use all features of React library for code Business logic.
 
 I propose using:
