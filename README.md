@@ -43,10 +43,26 @@ export { ghost, ghosts };
 
 That is all content of this library. So you can use all features of React library for code Business logic.
 
+## Use Case 1. Connecting redux, react and ghost
+
 I propose using:
 - Redux for Model
-- React for View
+- React for UI
 - React-Ghost for Business logic
+
+**business logic** (ghost) <------> **state** (redux) <------> **UI** (react)
+
+#### Ghosts:
+  - implement business logic - check for the state changes, compute/load data and dispatch actions for save new data;
+  - add/remove reducers in the redux;
+
+#### Redux:
+  - change state when receive actions;
+    
+#### React:
+  - get state;
+  - render UI;
+  - dispatch redux actions on user interactions;
 
 ## Install
 1. Install [React JS](https://reactjs.org/docs/create-a-new-react-app.html#create-react-app) 
