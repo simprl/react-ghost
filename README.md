@@ -4,6 +4,9 @@ I hope you like anime :)
 
 This library like "Ghost in the Shell" but "Ghost in the React Application" - business layer of the React application.
 
+[![](https://img.shields.io/npm/l/react-ghost.svg?style=flat)](https://github.com/simprl/react-ghost/blob/main/LICENSE)
+[![](https://img.shields.io/npm/v/react-ghost.svg?style=flat)](https://www.npmjs.com/package/react-ghost)
+
 Usually we use jsx for UI Components:
 ```jsx
 const Component = () => <div>
@@ -195,7 +198,7 @@ describe('init', () => {
 ```
 
 So we tested logic of application.
-After business logic implemented you can add thin layer of UI using react components.
+After business logic implemented, you can add thin layer of UI using react components.
  
 ## Requirements
 Support all react versions from 16 and later
