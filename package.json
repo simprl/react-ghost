@@ -1,6 +1,6 @@
 {
   "name": "react-ghost",
-  "version": "0.1.11",
+  "version": "0.1.14",
   "description": "react-ghost - it is logic/biseness layer, actors and workers",
   "main": "lib/index.js",
   "module": "es/index.js",

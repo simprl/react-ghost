@@ -71,6 +71,10 @@ I propose using:
 1. Install [React JS](https://reactjs.org/docs/create-a-new-react-app.html#create-react-app) 
 2. Add module react-ghost into project:
 
+```
+npm i react-ghost
+```
+
 ### You can use react and redux hooks:
 ```js
 import {useSelector, useMemo } from 'react';
