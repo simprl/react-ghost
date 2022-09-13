@@ -11,11 +11,11 @@ Usually we use jsx for UI Components:
 ```jsx
 const Component = () => <div>
     <MenuTop /> /* connect to MenuGhost */
-    <Pagination> /*  connect to ListGhost */
-    <List> /*  connect to ListGhost */
-    <ItemHeader> /*  connect to ItemGhost */
-    <ItemContent> /*  connect to ItemGhost */
-    <Pagination> /*  connect to ListGhost */
+    <Pagination /> /*  connect to ListGhost */
+    <List /> /*  connect to ListGhost */
+    <ItemHeader /> /*  connect to ItemGhost */
+    <ItemContent /> /*  connect to ItemGhost */
+    <Pagination /> /*  connect to ListGhost */
     <MenuBottom /> /*  connect to MenuGhost */
 </div>
 ```
@@ -34,7 +34,7 @@ const PageGhost = ({ param1, param2, id }) => ghosts(
 )
 ```
 
-They equals to react createElement:
+Its equals to react createElement:
 ```js
 import { createElement, Fragment } from 'react';
 
@@ -45,6 +45,9 @@ export { ghost, ghosts };
 ```
 
 That is all content of this library. So you can use all features of React library for code Business logic.
+
+For more information read this article: 
+**[Put a Soul into a React-Redux Project](https://dev.to/simprl/adding-a-soul-into-a-react-redux-project-524b)**
 
 ## Use Case 1. Connecting redux, react and ghost
 
