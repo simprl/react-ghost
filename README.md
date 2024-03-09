@@ -1,11 +1,34 @@
-# react-ghost
+# React Ghost
+![](./assets/reactghostlogo.svg)
 
-I hope you like anime :)
-
-This library like "Ghost in the Shell" but "Ghost in the React Application" - business layer of the React application.
 
 [![](https://img.shields.io/npm/l/react-ghost.svg?style=flat)](https://github.com/simprl/react-ghost/blob/main/LICENSE)
 [![](https://img.shields.io/npm/v/react-ghost.svg?style=flat)](https://www.npmjs.com/package/react-ghost)
+
+**react-ghost** is a specialized npm library inspired by the anime aesthetic, specifically designed for React application development. It mirrors the concept of "Ghost in the Shell," aiming to incorporate a ghostly essence into the React ecosystem. The library focuses on managing the business logic layer within React applications, offering a structured way to connect UI components with their underlying logic. Through its distinct approach, react-ghost facilitates the separation of the logic layer from the UI layer, enabling developers to maintain cleaner and more organized codebases.
+
+# Features
+* **Decoupling Logic from UI:** **react-ghost** utilizes two primary functions, **ghost()** and **ghosts()**, to abstract the business logic from UI components, promoting cleaner code and better separation of concerns.
+* **Intuitive Syntax:** It extends React's **createElement** functionality, allowing developers to succinctly bind logic to UI elements without cluttering the visual component structure.
+* **Seamless Integration:** Designed for seamless integration with Redux and React, react-ghost fits effortlessly into the existing ecosystem, enhancing the application's structure by clearly differentiating between the model (Redux), UI (React), and business logic (react-ghost).
+* **Enhanced Testing Capabilities:** With react-ghost, testing the business logic of applications becomes more straightforward, enabling developers to write more focused and effective tests by leveraging the react-ghost-test package.
+
+# Installation
+1. Prerequisites: Ensure React JS is installed in your project.
+2. Adding react-ghost: Simply add react-ghost to your project with npm:
+
+```bash
+npm i react-ghost
+```
+
+# API
+* **ghost(Actor, props, children)**: Creates a ghost that acts as a bridge between the business logic and the React component tree.
+* **ghosts(Actor1, Actor2, ..., ActorN)**: Facilitates the creation of multiple ghosts, allowing for complex logic compositions and interactions within the application.
+
+# Usage
+react-ghost offers a simplistic yet powerful API for intertwining business logic with React components. The library provides hooks such as useSelector and useMemo from React, along with useDispatch from Redux, to craft responsive and dynamic applications. Developers can define "ghosts" to encapsulate business logic, which can then be invoked within React components, offering a streamlined approach to managing state and effects.
+
+## Compare with JSX
 
 Usually we use jsx for UI Components:
 ```jsx
@@ -49,36 +72,35 @@ That is all content of this library. So you can use all features of React librar
 For more information read this article: 
 **[Put a Soul into a React-Redux Project](https://dev.to/simprl/adding-a-soul-into-a-react-redux-project-524b)**
 
-## Use Case 1. Connecting redux, react and ghost
+## Use Case 1. Connecting Redux, React and Ghost
 
-I propose using:
-- Redux for Model
-- React for UI
-- React-Ghost for Business logic
+This architecture leverages:
+* **Redux** for managing the application's state (Model),
+* **React** for rendering the user interface (UI),
+* **React-Ghost** for orchestrating the business logic.
 
-**business logic** (ghost) <------> **state** (redux) <------> **UI** (react)
+**business logic** (Ghost) <------> **state** (Redux) <------> **UI** (React)
 
-#### Ghosts:
-  - implement business logic - check for the state changes, compute/load data and dispatch actions for save new data;
-  - add/remove reducers in the redux;
+### Interaction Flow:
+* **Business Logic** (React-Ghost) interacts with State (Redux) to implement logic, manage state changes, compute or load data, and dispatch actions to update the state.
+* **State** (Redux) updates in response to actions, affecting the application's state.
+* **UI** (React) displays the state to the user and captures user interactions, dispatching actions to Redux based on those interactions.
+
+### Responsibilities
+
+#### React-Ghost (Ghosts):
+* Implements business logic, including monitoring state changes, processing or fetching data, and initiating actions to store new data.
+* Dynamically adds or removes reducers within Redux to manage state transitions effectively.
 
 #### Redux:
-  - change state when receive actions;
-    
+* Manages the application's state, updating it in response to dispatched actions, thereby serving as the central source of truth.
+
 #### React:
-  - get state;
-  - render UI;
-  - dispatch redux actions on user interactions;
+* Retrieves state information for display, ensuring the UI reflects the current application state.
+* Renders the user interface, providing a responsive and interactive experience.
+* Dispatches actions to Redux based on user interactions, facilitating a reactive application flow.
 
-## Install
-1. Install [React JS](https://reactjs.org/docs/create-a-new-react-app.html#create-react-app) 
-2. Add module react-ghost into project:
-
-```
-npm i react-ghost
-```
-
-### You can use react and redux hooks:
+### You can use React and Redux hooks:
 ```js
 import {useSelector, useMemo } from 'react';
 import { useDispatch } from 'react-redux'
@@ -103,10 +125,6 @@ const HomePageGhost = () => {
     return null 
 }
 ```
-## API
-`ghost(Actor, props, children)` - create and return ghost/actor/worker
-
-`ghost(Actor1, Actor2, .... ActorN)` - crate and return many ghosts/actors/workers
 
 ## Testing
 ### Now you can write tests for application business logic separately from UI logic 
