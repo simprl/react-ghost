@@ -26,9 +26,7 @@ npm i react-ghost
 * **ghosts(Actor1, Actor2, ..., ActorN)**: Facilitates the creation of multiple ghosts, allowing for complex logic compositions and interactions within the application.
 
 # Usage
-react-ghost offers a simplistic yet powerful API for intertwining business logic with React components. The library provides hooks such as useSelector and useMemo from React, along with useDispatch from Redux, to craft responsive and dynamic applications. Developers can define "ghosts" to encapsulate business logic, which can then be invoked within React components, offering a streamlined approach to managing state and effects.
-
-## Compare with JSX
+**react-ghost** integrates smoothly into your React application, allowing you to utilize React's hooks and Redux's capabilities within the framework of react-ghost. By leveraging this library, you can encapsulate business logic within "ghosts" without altering the way you use React hooks in your components. This means all standard **React hooks** (useState, useEffect, useContext, useSelector, useDispatch, etc.) and any custom hooks you've created remain applicable within the context of react-ghost.
 
 Usually we use jsx for UI Components:
 ```jsx
